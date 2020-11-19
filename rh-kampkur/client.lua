@@ -22,6 +22,7 @@ AddEventHandler('rh:kampkur',function()
         if d<100 then 
             crouch()
             TriggerEvent("mythic_progbar:client:progress",{name="campsetup",duration=9000,label="Çadır kuruluyor",useWhileDead=false,canCancel=true,controlDisables={disableMovement=true,disableCarMovement=true,disableMouse=false,disableCombat=true}},function(e)if not e then TriggerEvent("mythic_progbar:client:progress",{name="campfire",duration=4000,label="Kamp ateşi yakılıyor",useWhileDead=false,canCancel=true,controlDisables={disableMovement=true,disableCarMovement=true,disableMouse=false,disableCombat=true}},function(e)if not e then else print("iptal")end end)else print("iptal")end;ClearPedTasks(PlayerPedId(-1))end)            
+            Citizen.Wait(13000)
             TriggerServerEvent('rh:kampkontrol')
         else 
             exports['mythic_notify']:DoHudText('inform','Sadece belirlenen alanlarda kamp yapabilirsiniz.')
@@ -73,5 +74,3 @@ Citizen.CreateThread(function()
 end)
 
 function startAnim()Citizen.CreateThread(function()RequestAnimDict("bs_2a_mcs_10-6")while not HasAnimDictLoaded("bs_2a_mcs_10-6")do Citizen.Wait(0)end;TaskPlayAnim(GetPlayerPed(-1),"bs_2a_mcs_10-6","hc_hacker_dual-6",8.0,-8.0,-1,50,0,false,false,false)end)end;Citizen.CreateThread(function()for a,b in pairs(a)do b.blip=AddBlipForCoord(b.x,b.y,b.z)SetBlipSprite(b.blip,b.id)SetBlipDisplay(b.blip,4)SetBlipScale(b.blip,0.7)SetBlipColour(b.blip,b.colour)SetBlipAsShortRange(b.blip,true)BeginTextCommandSetBlipName("STRING")AddTextComponentString(b.title)EndTextCommandSetBlipName(b.blip)end end)
-
-
