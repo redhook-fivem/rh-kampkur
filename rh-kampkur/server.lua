@@ -9,7 +9,7 @@
 --$$ |  $$ |$$       |$$    $$ |$$ |  $$ |$$    $$/ $$    $$/ $$ | $$  |
 --$$/   $$/  $$$$$$$/  $$$$$$$/ $$/   $$/  $$$$$$/   $$$$$$/  $$/   $$/ 
 --@Bu script mike tarafından kodlanıp, redhook dev takımı tarafından geliştirilmiştir.by base64
-
+                                                                                                                                    
 ESX = nil 
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -17,8 +17,13 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 ESX.RegisterUsableItem('kampkiti', function(source)
     local xPlayer = ESX.GetPlayerFromId(source)
-    TriggerClientEvent('rh:kampkur', source)
     xPlayer.removeInventoryItem('kampkiti', 1)
+    TriggerClientEvent('rh:kampkur', source)
     Citizen.Wait(13000)
+end)
+
+
+RegisterServerEvent('rh:kampkontrol')
+AddEventHandler('rh:kampkontrol', function()
     TriggerClientEvent("rh-kampkur:createobject",source,'prop_beach_fire','prop_skid_tent_01','prop_skid_chair_02')
 end)
