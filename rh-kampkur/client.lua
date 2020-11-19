@@ -10,7 +10,36 @@
 
 --@Bu script mike tarafından kodlanıp, redhook dev takımı tarafından geliştirilmiştir.by base64
 
-local a={{title="Kamp Alanı",colour=5,id=417,x=2948.568,y=5326.274,z=101.27}}RegisterNetEvent('rh:kampkur')AddEventHandler('rh:kampkur',function()local b=PlayerPedId()local c=GetEntityCoords(PlayerPedId())local d=GetDistanceBetweenCoords(2952.8,5325.69,101.02,c.x,c.y,c.z)if IsPedInAnyVehicle(b)then exports['mythic_notify']:DoHudText('inform','Araç içerisinde bu işlem gerçekleştirilemez')else if d<100 then crouch()TriggerEvent("mythic_progbar:client:progress",{name="campsetup",duration=9000,label="Çadır kuruluyor",useWhileDead=false,canCancel=true,controlDisables={disableMovement=true,disableCarMovement=true,disableMouse=false,disableCombat=true}},function(e)if not e then TriggerEvent("mythic_progbar:client:progress",{name="campfire",duration=4000,label="Kamp ateşi yakılıyor",useWhileDead=false,canCancel=true,controlDisables={disableMovement=true,disableCarMovement=true,disableMouse=false,disableCombat=true}},function(e)if not e then else print("iptal")end end)else print("iptal")end;ClearPedTasks(PlayerPedId(-1))end)else exports['mythic_notify']:DoHudText('inform','Sadece belirlenen alanlarda kamp yapabilirsiniz.')end end end)RegisterNetEvent("rh-kampkur:createobject")AddEventHandler("rh-kampkur:createobject",function(f,g,h)local i=PlayerPedId()local j=GetEntityCoords(i)local k=ObjToNet(CreateObject(GetHashKey(f),j.x-1,j.y-1.5,j.z-1.6,true,false))local l=ObjToNet(CreateObjectNoOffset(GetHashKey(g),j.x-1.5,j.y-3.5,j.z-0.5,true,false))local m=ObjToNet(CreateObjectNoOffset(GetHashKey(h),j.x-2.5,j.y+0.3,j.z-0.6,true,false))local n=ObjToNet(CreateObjectNoOffset(GetHashKey(h),j.x+1.0,j.y+0.3,j.z-0.6,true,false))end)function crouch()TaskStartScenarioInPlace(GetPlayerPed(-1),'world_human_gardener_plant',0,false)end
+local a={{title="Kamp Alanı",colour=5,id=417,x=2948.568,y=5326.274,z=101.27}}
+RegisterNetEvent('rh:kampkur')
+AddEventHandler('rh:kampkur',function()
+    local b=PlayerPedId()
+    local c=GetEntityCoords(PlayerPedId())
+    local d=GetDistanceBetweenCoords(2952.8,5325.69,101.02,c.x,c.y,c.z)
+    if IsPedInAnyVehicle(b)then 
+        exports['mythic_notify']:DoHudText('inform','Araç içerisinde bu işlem gerçekleştirilemez')
+    else 
+        if d<100 then 
+            crouch()
+            TriggerEvent("mythic_progbar:client:progress",{name="campsetup",duration=9000,label="Çadır kuruluyor",useWhileDead=false,canCancel=true,controlDisables={disableMovement=true,disableCarMovement=true,disableMouse=false,disableCombat=true}},function(e)if not e then TriggerEvent("mythic_progbar:client:progress",{name="campfire",duration=4000,label="Kamp ateşi yakılıyor",useWhileDead=false,canCancel=true,controlDisables={disableMovement=true,disableCarMovement=true,disableMouse=false,disableCombat=true}},function(e)if not e then else print("iptal")end end)else print("iptal")end;ClearPedTasks(PlayerPedId(-1))end)            
+            TriggerServerEvent('rh:kampkontrol')
+        else 
+            exports['mythic_notify']:DoHudText('inform','Sadece belirlenen alanlarda kamp yapabilirsiniz.')
+        end 
+    end 
+end)
+    
+    RegisterNetEvent("rh-kampkur:createobject")
+    AddEventHandler("rh-kampkur:createobject",function(f,g,h)
+        local i=PlayerPedId()
+        local j=GetEntityCoords(i)
+        local k=ObjToNet(CreateObject(GetHashKey(f),j.x-1,j.y-1.5,j.z-1.6,true,false))
+        local l=ObjToNet(CreateObjectNoOffset(GetHashKey(g),j.x-1.5,j.y-3.5,j.z-0.5,true,false))
+        local m=ObjToNet(CreateObjectNoOffset(GetHashKey(h),j.x-2.5,j.y+0.3,j.z-0.6,true,false))
+        local n=ObjToNet(CreateObjectNoOffset(GetHashKey(h),j.x+1.0,j.y+0.3,j.z-0.6,true,false))
+    end) 
+
+        function crouch()TaskStartScenarioInPlace(GetPlayerPed(-1),'world_human_gardener_plant',0,false)end
 
 
 local isindim = false
